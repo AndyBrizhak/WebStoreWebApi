@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using WebStore.Domain.Entities.Orders;
 using WebStore.Domain.ViewModels;
 
-namespace WebStore.Interfaces.Services
+namespace WebStore.Infrastructure.Interfaces
 {
     public interface IOrderService
     {
