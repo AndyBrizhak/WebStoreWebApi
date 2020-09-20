@@ -5,6 +5,9 @@ using System.Net.Http.Headers;
 
 namespace WebStore.Clients.Base
 {
+    /// <summary>
+    /// Class for create Clients
+    /// </summary>
     public abstract class BaseClient
     {
         protected readonly string _ServiceAddress;
