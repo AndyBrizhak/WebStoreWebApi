@@ -27,11 +27,11 @@ namespace WebStore
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services
-               .AddDataProtection()
-               .SetApplicationName("WebStore")
-               .PersistKeysToFileSystem(new DirectoryInfo(typeof(Startup).Assembly.Location))
-               .SetDefaultKeyLifetime(TimeSpan.FromDays(14));
+            //services
+            //   .AddDataProtection()
+            //   .SetApplicationName("WebStore")
+            //   .PersistKeysToFileSystem(new DirectoryInfo(typeof(Startup).Assembly.Location))
+            //   .SetDefaultKeyLifetime(TimeSpan.FromDays(14));
 
             services.AddDbContext<WebStoreDB>(opt => 
                 opt.UseSqlServer(_Configuration.GetConnectionString("DefaultConnection")));
