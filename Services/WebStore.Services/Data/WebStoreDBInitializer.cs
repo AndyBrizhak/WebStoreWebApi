@@ -8,6 +8,9 @@ using WebStore.Domain.Entities.Identity;
 
 namespace WebStore.Services.Data
 {
+    /// <summary>
+    /// Class for initialize database
+    /// </summary>
     public class WebStoreDBInitializer
     {
         private readonly WebStoreDB _db;
