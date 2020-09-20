@@ -7,14 +7,13 @@ namespace WebStore.Clients.Base
 {
     public abstract class BaseClient
     {
-        //private readonly IConfiguration _Configuration;
-        private readonly string _ServiceAddres;
+        protected readonly string _ServiceAddress;
         protected readonly HttpClient _Client;
 
-        protected BaseClient(IConfiguration Configuration, string ServiceAddres )
+        protected BaseClient(IConfiguration Configuration, string ServiceAddress )
         {
             //_Configuration = Configuration;
-            _ServiceAddres = ServiceAddres;
+            _ServiceAddress = ServiceAddress;
             _Client = new HttpClient
             {
                 BaseAddress = new Uri(Configuration["WebApiURL"]),
