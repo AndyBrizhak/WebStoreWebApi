@@ -67,22 +67,16 @@ namespace WebStore
                 opt.SlidingExpiration = true;
             });
 
-            services.AddControllersWithViews(opt =>
-            {
-                //opt.Filters.Add<Filter>();
-                //opt.Conventions.Add(); // Добавление/изменение соглашений MVC-приложения
-            }).AddRazorRuntimeCompilation();
+            services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
-            //services.AddScoped<IEmployeesData, InMemoryEmployeesData>();
+            
             services.AddScoped<IEmployeesData, SqlEmployeesData>();
-            //services.AddScoped<IProductData, InMemoryProductData>();
+            
             services.AddScoped<IProductData, SqlProductData>();
             services.AddScoped<ICartService, CookiesCartService>();
             services.AddScoped<IOrderService, SqlOrderService>();
 
-            //services.AddTransient<TInterface, TService>();
-            //services.AddScoped<TInterface, TService>();
-            //services.AddSingleton<TInterface, TService>();
+           
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, WebStoreDBInitializer db)
@@ -105,14 +99,7 @@ namespace WebStore
 
             app.UseWelcomePage("/welcome");
 
-            //app.Use(async (context, next) =>
-            //{
-            //    //Действия над context до следующего элемента в конвейере
-            //    await next(); // Вызов следующего промежуточного ПО в конвейере
-            //    // Действия над context после следующего элемента в конвейере
-            //});
-
-            //app.UseMiddleware<TestMiddleware>();
+            
 
             app.UseEndpoints(endpoints =>
             {
