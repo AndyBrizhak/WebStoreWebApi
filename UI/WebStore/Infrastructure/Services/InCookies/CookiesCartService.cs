@@ -4,8 +4,8 @@ using Newtonsoft.Json;
 using WebStore.Domain;
 using WebStore.Domain.Entities;
 using WebStore.Domain.ViewModels;
-using WebStore.Infrastructure.Interfaces;
 using WebStore.Infrastructure.Mapping;
+using WebStore.Interfaces.Service;
 
 namespace WebStore.Infrastructure.Services.InCookies
 {
