@@ -80,7 +80,7 @@ namespace WebStore
 
             //services.AddScoped<IProductData, SqlProductData>();
             //services.AddScoped<ICartService, CookiesCartService>();
-            services.AddScoped<IOrderService, OrdersClient>();
+            services.AddScoped<IOrderService, OrdersClient>();          
             services.AddScoped<ICartService, CookiesCartService>();
 
 
