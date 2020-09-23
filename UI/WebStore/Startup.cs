@@ -17,6 +17,7 @@ using WebStore.Interfaces.TestApi;
 using WebStore.Services.Data;
 using WebStore.Services.Products.InCookies;
 using WebStore.Services.Products.InSQL;
+using WebStore.Clients.Employees;
 
 namespace WebStore
 {
@@ -71,9 +72,9 @@ namespace WebStore
 
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
-            
-            services.AddScoped<IEmployeesData, SqlEmployeesData>();
-            
+
+            services.AddScoped<IEmployeesData, EmployeesClient>();
+
             services.AddScoped<IProductData, SqlProductData>();
             services.AddScoped<ICartService, CookiesCartService>();
             services.AddScoped<IOrderService, SqlOrderService>();
