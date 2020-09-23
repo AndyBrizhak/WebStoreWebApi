@@ -18,6 +18,7 @@ using WebStore.Services.Data;
 using WebStore.Services.Products.InCookies;
 using WebStore.Services.Products.InSQL;
 using WebStore.Clients.Employees;
+using WebStore.Clients.Products;
 
 namespace WebStore
 {
@@ -74,10 +75,12 @@ namespace WebStore
 
 
             services.AddScoped<IEmployeesData, EmployeesClient>();
+            services.AddScoped<IProductData, ProductsClient>();
 
-            services.AddScoped<IProductData, SqlProductData>();
-            services.AddScoped<ICartService, CookiesCartService>();
+            //services.AddScoped<IProductData, SqlProductData>();
+            //services.AddScoped<ICartService, CookiesCartService>();
             services.AddScoped<IOrderService, SqlOrderService>();
+            services.AddScoped<ICartService, CookiesCartService>();
 
 
             services.AddScoped<IValueService, ValuesClient>();
