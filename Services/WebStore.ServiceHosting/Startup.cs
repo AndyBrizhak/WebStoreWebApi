@@ -35,7 +35,7 @@ namespace WebStore.ServiceHosting
 
             services.AddWebStoreServices();
 
-            // Сервис нужен для работы корзины...
+            // Required for the work of the basket ...
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddControllers();
         }
