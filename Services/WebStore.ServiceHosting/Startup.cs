@@ -12,6 +12,7 @@ using WebStore.Services.Products;
 using WebStore.Services.Products.InCookies;
 using WebStore.Services.Products.InSQL;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.OpenApi.Models;
 using WebStore.Domain.Entities.Identity;
 using WebStore.Services.Data;
 
@@ -65,7 +66,15 @@ namespace WebStore.ServiceHosting
 
             // Required for the work of the basket ...
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+            services.AddSwaggerGen(opt =>
+            {
+                opt.SwaggerDoc("v1", new OpenApiInfo { Title = "WebStore.API", Version = "v1" });
+            });
+
             services.AddControllers();
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -81,6 +90,13 @@ namespace WebStore.ServiceHosting
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseSwagger();
+            app.UseSwaggerUI(opt =>
+            {
+                opt.SwaggerEndpoint("/swagger/v1/swagger.json", "WebStore.API");
+                opt.RoutePrefix = string.Empty;
+            });
 
             app.UseEndpoints(endpoints =>
             {
