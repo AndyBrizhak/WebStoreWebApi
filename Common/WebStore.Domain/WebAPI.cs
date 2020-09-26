@@ -7,7 +7,7 @@ namespace WebStore.Domain
     /// <summary>
     /// Adresses of API`s
     /// </summary>
-    public static class WebAPI
+    public static partial class WebAPI
     {
         public const string Employees = "api/employees";
         public const string Products = "api/products";
