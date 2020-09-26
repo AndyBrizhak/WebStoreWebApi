@@ -10,6 +10,7 @@ using WebStore.Interfaces.Service;
 
 namespace WebStore.ServiceHosting.Controllers
 {
+    /// <summary>API управления сотрудниками</summary>
     //[Route("api/[controller]")] // http://localhost:5001/api/EmployeesApi
     //[Route("api/employees")]      // http://localhost:5001/api/employees - наш выбор
     [Route(WebAPI.Employees)]      // http://localhost:5001/api/employees - наш выбор
@@ -24,6 +25,10 @@ namespace WebStore.ServiceHosting.Controllers
             _EmployeesData = EmployeesData;
         }
 
+        /// <summary>
+        ///  Получить всех доступных сотрудников
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]        // GET http://localhost:5001/api/employees
         //[HttpGet("all")] // GET http://localhost:5001/api/employees/all
         public IEnumerable<Employee> Get()
