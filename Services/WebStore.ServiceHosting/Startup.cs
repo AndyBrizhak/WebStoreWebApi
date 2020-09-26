@@ -13,6 +13,7 @@ using WebStore.Services.Products.InCookies;
 using WebStore.Services.Products.InSQL;
 using Microsoft.AspNetCore.Identity;
 using WebStore.Domain.Entities.Identity;
+using WebStore.Services.Data;
 
 namespace WebStore.ServiceHosting
 {
@@ -30,6 +31,7 @@ namespace WebStore.ServiceHosting
         {
             services.AddDbContext<WebStoreDB>(opt =>
                 opt.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddTransient<WebStoreDBInitializer>();
 
             services.AddIdentity<User, Role>(opt => { })
                 .AddEntityFrameworkStores<WebStoreDB>()
@@ -67,8 +69,10 @@ namespace WebStore.ServiceHosting
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, WebStoreDBInitializer db)
         {
+            db.Initialize();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
