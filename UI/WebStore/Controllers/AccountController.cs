@@ -31,37 +31,40 @@ namespace WebStore.Controllers
         {
             if (!ModelState.IsValid) return View(Model);
 
-            _Logger.LogInformation("Starting the new user registration process {0}", Model.UserName);
-
-            var user = new User
+            using (_Logger.BeginScope("Регистрация пользователя {0}", Model.UserName))
             {
-                UserName = Model.UserName
-            };
 
-            var registration_result = await _UserManager.CreateAsync(user, Model.Password);
-            if (registration_result.Succeeded)
-            {
-                _Logger.LogInformation("User {0} registered successfully", user.UserName);
+                _Logger.LogInformation("Starting the new user registration process {0}", Model.UserName);
 
-                await _UserManager.AddToRoleAsync(user, Role.User);
+                var user = new User
+                {
+                    UserName = Model.UserName
+                };
 
-                _Logger.LogInformation("User {0} has been assigned role {1}", user.UserName, Role.User);
+                var registration_result = await _UserManager.CreateAsync(user, Model.Password);
+                if (registration_result.Succeeded)
+                {
+                    _Logger.LogInformation("User {0} registered successfully", user.UserName);
 
-                await _SignInManager.SignInAsync(user, false);
+                    await _UserManager.AddToRoleAsync(user, Role.User);
 
-                _Logger.LogInformation("User {0} is automatically logged in after registration", user.UserName);
-                return RedirectToAction("Index", "Home");
+                    _Logger.LogInformation("User {0} has been assigned role {1}", user.UserName, Role.User);
+
+                    await _SignInManager.SignInAsync(user, false);
+
+                    _Logger.LogInformation("User {0} is automatically logged in after registration", user.UserName);
+                    return RedirectToAction("Index", "Home");
+                }
+
+                _Logger.LogWarning("Error while registering a new user {0}\r\n",
+                    Model.UserName,
+                    string.Join(Environment.NewLine, registration_result.Errors.Select(error => error.Description)));
+
+                //_Logger.Log(LogLevel.Information, new EventId(5), registration_result, null, (result, _) => string.Join(Environment.NewLine, result.Errors.Select(error => error.Description)));
+
+                foreach (var error in registration_result.Errors)
+                    ModelState.AddModelError(string.Empty, error.Description);
             }
-
-            _Logger.LogWarning("Error while registering a new user {0}\r\n",
-                Model.UserName,
-                string.Join(Environment.NewLine, registration_result.Errors.Select(error => error.Description)));
-
-            //_Logger.Log(LogLevel.Information, new EventId(5), registration_result, null, (result, _) => string.Join(Environment.NewLine, result.Errors.Select(error => error.Description)));
-
-            foreach (var error in registration_result.Errors)
-                ModelState.AddModelError(string.Empty, error.Description);
-
             return View(Model);
         }
 
