@@ -22,4 +22,6 @@
     <ProjectReference Include="..\..\UI\WebStore\WebStore.csproj" />
   </ItemGroup>
 
+
 </Project>
+
