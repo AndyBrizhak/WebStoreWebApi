@@ -15,6 +15,9 @@ using WebStore.Clients.Employees;
 using WebStore.Clients.Orders;
 using WebStore.Clients.Products;
 using WebStore.Clients.Identity;
+using Microsoft.Extensions.Logging;
+using WebStore.Infrastructure.Middleware;
+using WebStore.Logger;
 
 namespace WebStore
 {
@@ -99,16 +102,20 @@ namespace WebStore
             services.AddScoped<IValueService, ValuesClient>();
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory log)
         {
             /*, WebStoreDBInitializer db*/
             //db.Initialize();
+
+            log.AddLog4Net();
 
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
                 app.UseBrowserLink();
             }
+
+            app.UseMiddleware<ErrorHandlingMiddleware>();
 
             app.UseStaticFiles();
             app.UseDefaultFiles();
