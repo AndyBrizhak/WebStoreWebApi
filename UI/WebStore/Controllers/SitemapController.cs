@@ -3,7 +3,6 @@ using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using SimpleMvcSitemap;
 using WebStore.Interfaces.Service;
-using WebStore.Interfaces.Services;
 
 namespace WebStore.Controllers
 {
