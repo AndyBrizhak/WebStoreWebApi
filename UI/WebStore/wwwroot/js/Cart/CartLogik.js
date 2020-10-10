@@ -7,7 +7,7 @@
     init: function (properties) {
         $.extend(Cart._properties, properties);
 
-        $(".add-to-cart").click(addToCart);
+        $(".add-to-cart").click(Cart.addToCart);
     },
 
     addToCart: function (event) {
