@@ -345,4 +345,5 @@ healthchecksdb
 /WebStore/wwwroot/css/site.min.css
 /WebStore/wwwroot/css/site.css
 /Common/WebStore.Domain/WebStore.Domain.xml
+/UI/WebStore/Logs
 /Services/WebStore.ServiceHosting/WebStore.ServiceHosting.xml
