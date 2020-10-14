@@ -3,7 +3,6 @@ using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using SimpleMvcSitemap;
 using WebStore.Interfaces.Service;
-using WebStore.Interfaces.Services;
 
 namespace WebStore.Controllers
 {
@@ -26,7 +25,7 @@ namespace WebStore.Controllers
             foreach (var brand in ProductData.GetBrands())
                 nodes.Add(new SitemapNode(Url.Action("Shop", "Catalog", new { BrandId = brand.Id })));
 
-            foreach (var product in ProductData.GetProducts())
+            foreach (var product in ProductData.GetProducts().Products)
                 nodes.Add(new SitemapNode(Url.Action("Details", "Catalog", new { product.Id })));
 
             return new SitemapProvider().CreateSitemap(new SitemapModel(nodes));
