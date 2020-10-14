@@ -7,7 +7,7 @@ using WebStore.Domain.Entities.Base.Interfaces;
 
 namespace WebStore.Domain.Entities
 {
-  public  class WebImages : INamedEntity, IPicture
+  public  class WebImage : INamedEntity, IPicture
     {
         [Key]
         public int Id { get; set; }
